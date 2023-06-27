@@ -1,5 +1,5 @@
 #include "sort.h"
- /**
+/**
  * insertion_sort_list - sorts a doubly linked list of integers in ascending
  * order using the Insertion sort algo
  * @list: the list to sort
@@ -20,21 +20,24 @@ next = curr->next;
 if (curr->n > next->n)
 {
 prev = curr->prev;
+/* Swap the nodes */
 curr->next = next->next;
 if (next->next != NULL)
 next->next->prev = curr;
-next->next = curr;
 next->prev = prev;
-curr->prev = next;
 if (prev != NULL)
 prev->next = next;
 else
 *list = next;
+curr->prev = next;
+next->next = curr;
 swapped = 1;
 print_list(*list);
 }
 else
+{
 curr = curr->next;
+}
 }
 }
 }
