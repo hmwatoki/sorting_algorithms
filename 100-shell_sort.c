@@ -1,27 +1,31 @@
-#include <stdio.h>
 #include "sort.h"
 /**
- * shell_sort - Sorts an array of integers in ascending order
- * @array: The array to be sorted
- * @size: The size of the array
- */
+ * shell_sort - sorts an array of integers in ascending order
+ * @array: the array to sort
+ * @size: the size of the array
+ * return: void
+*/
+
 void shell_sort(int *array, size_t size)
 {
-size_t space = 1, i, j;
-int tmp;
-while (space < size / 3)
-space = space * 3 + 1;
-while (space > 0)
+size_t gap = 1;
+int temp;
+if (array == NULL || size < 2)
+return;
+while (gap < size / 3)
+gap = (gap * 3) + 1;
+while (gap)
 {
-printf("Array at interval %lu: ", space);
-for (i = space; i < size; i++)
+for (size_t i = gap; i < size; i++)
 {
-tmp = array[i];
-for (j = i; j >= space && array[j - space] > tmp; j -= space)
-array[j] = array[j - space];
-array[j] = tmp;
+temp = array[i];
+for (size_t j = i; j >= gap && array[j - gap] > temp; j -= gap)
+{
+array[j] = array[j - gap];
+}
+array[j] = temp;
 }
 print_array(array, size);
-space /= 3;
+gap /= 3;
 }
 }
